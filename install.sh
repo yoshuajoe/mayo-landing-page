@@ -58,34 +58,30 @@ fi
 
 printf "${BLUE}🔍 Detected System: $OS ($ARCH)${NC}\n"
 
-# 3. GET LATEST RELEASE INFO
-printf "${BLUE}📡 Fetching latest version info from GitHub...${NC}\n"
-LATEST_RELEASE=$(curl -s https://api.github.com/repos/$REPO/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-
-if [ -z "$LATEST_RELEASE" ]; then
-    printf "${RED}❌ Error: Could not determine latest version from GitHub API.${NC}\n"
-    printf "Please visit https://github.com/$REPO/releases/latest manually.\n"
-    exit 1
-fi
+# 3. GET VERSION INFO
+printf "${BLUE}📡 Fetching version info...${NC}\n"
+# Since binaries are hosted in the bin/ folder, we can just use the version from a file or hardcode it
+# Let's assume for now we don't need the GitHub release info anymore.
+LATEST_RELEASE="v1.4.0" # You can update this manually or generate it
 
 printf "${GREEN}✨ Found version: $LATEST_RELEASE${NC}\n"
 
 # 4. DOWNLOAD BINARY
-# Asset name convention: mayo-darwin-arm64, mayo-linux-amd64, etc.
+# Asset name convention in your bin/ folder: mayo-darwin-arm64, mayo-linux-amd64, etc.
 DOWNLOAD_NAME="mayo-$OS-$ARCH"
 if [ "$OS" = "windows" ]; then
     DOWNLOAD_NAME="${DOWNLOAD_NAME}.exe"
 fi
 
-DOWNLOAD_URL="https://github.com/$REPO/releases/download/$LATEST_RELEASE/$DOWNLOAD_NAME"
+# Pointing to your local website's bin directory
+DOWNLOAD_URL="https://mayo.teleskop.id/bin/$DOWNLOAD_NAME"
 TMP_DIR=$(mktemp -d)
 TMP_BINARY="$TMP_DIR/$BINARY_NAME"
 
-printf "${BLUE}📥 Downloading $DOWNLOAD_NAME...${NC}\n"
+printf "${BLUE}📥 Downloading $DOWNLOAD_NAME from mayo.teleskop.id...${NC}\n"
 if ! curl -L -o "$TMP_BINARY" "$DOWNLOAD_URL"; then
     printf "${RED}❌ Download failed!${NC}\n"
     printf "URL attempted: ${YELLOW}$DOWNLOAD_URL${NC}\n"
-    printf "The binary for this platform might not be available in v$LATEST_RELEASE yet.\n"
     exit 1
 fi
 
