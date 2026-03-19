@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation — Mayo CLI</title>
+    <meta name="description"
+        content="Complete documentation for Mayo CLI. Learn how to install, configure, and use Mayo for AI-powered data analysis from your terminal." />
+    <meta property="og:title" content="Documentation — Mayo CLI" />
+    <meta property="og:description"
+        content="Complete documentation for Mayo CLI — AI-powered data analysis in your terminal." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <span class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="4 17 10 11 4 5"></polyline>
+                        <line x1="12" y1="19" x2="20" y2="19"></line>
+                    </svg>
+                </span>
+                <span class="logo-text">Mayo</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="docs.html" class="nav-link" style="color: var(--accent-2);">Docs</a>
+                <a href="index.html#faq" class="nav-link">FAQ</a>
+            </div>
+            <div class="nav-spacer" style="flex: 1;"></div>
+            <a href="index.html#install" class="nav-cta">
+                Get Started
+            </a>
+            <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="nav-mobile-menu" id="mobileMenu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#features" class="nav-link">Features</a>
+            <a href="docs.html" class="nav-link">Docs</a>
+            <a href="index.html#faq" class="nav-link">FAQ</a>
+        </div>
+    </nav>
+
+    <div class="docs-layout">
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="docs-sidebar" id="docsSidebar">
+            <div class="docs-sidebar-inner">
+                <h3>Getting Started</h3>
+                <a href="#getting-started" class="active">Overview</a>
+                <a href="#installation">Installation</a>
+                <a href="#prerequisites">Prerequisites</a>
+                <a href="#first-run">First Run</a>
+
+                <h3>Commands</h3>
+                <a href="#commands">All Commands</a>
+                <a href="#ai-configuration">AI & Configuration</a>
+                <a href="#connectivity">Connectivity</a>
+                <a href="#dataframes">Data Processing</a>
+                <a href="#knowledge-base">Knowledge Base</a>
+                <a href="#sessions">Sessions</a>
+                <a href="#api-system">API & System</a>
+                <a href="#terminal-commands">Terminal Commands</a>
+
+                <h3>Guides</h3>
+                <a href="#natural-language">Natural Language Queries</a>
+                <a href="#data-enrichment">Data Enrichment</a>
+                <a href="#reconciliation">Reconciliation</a>
+                <a href="#knowledge-rag">Knowledge (RAG)</a>
+                <a href="#api-server">API Server</a>
+
+                <h3>Trust & Security</h3>
+                <a href="#security">Overview</a>
+                <a href="#pii-masking">PII Masking</a>
+                <a href="#audit">Auditing</a>
+
+                <h3>Resources</h3>
+                <a href="#architecture">Architecture</a>
+                <a href="#changelog">Changelog</a>
+            </div>
+        </aside>
+
+        <!-- ===== DOCS CONTENT ===== -->
+        <main class="docs-main">
+            <!-- GETTING STARTED -->
+            <h1 id="getting-started">
+                <span class="gradient-text">Mayo CLI</span> Documentation
+            </h1>
+            <p>
+                Mayo CLI is an autonomous AI companion for your terminal, designed to transform how you interact with
+                data. Whether you're a data scientist, researcher, or developer, Mayo helps you query, analyze, and
+                enrich your datasets using natural language — all while keeping your data private and secure.
+            </p>
+
+            <div class="docs-callout tip">
+                <strong>New to Mayo?</strong> Run <code>/wizard</code> after installation for a guided setup that
+                walks you through configuring your AI provider and connecting your first data source.
+            </div>
+
+            <!-- INSTALLATION -->
+            <h2 id="installation">Installation</h2>
+
+            <pre><code>curl -fsSL https://mayo.teleskop.id/install.sh | bash</code></pre>
+
+            <h3>Termux (Android)</h3>
+            <pre><code>bash install_termux.sh</code></pre>
+
+            <!-- PREREQUISITES -->
+            <h2 id="prerequisites">Prerequisites</h2>
+            <ul>
+                <li><strong>SQLite3</strong> — Required for local data storage and in-memory processing.</li>
+                <li><strong>Go 1.21+</strong> — Only if building from source.</li>
+                <li><strong>AI Provider API Key</strong> — At least one: OpenAI, Google Gemini, Anthropic, or Groq.</li>
+            </ul>
+
+            <div class="docs-callout info">
+                You can install prerequisites automatically with: <code>bash setup_prerequisites.sh</code>
+            </div>
+
+            <!-- FIRST RUN -->
+            <h2 id="first-run">First Run</h2>
+            <p>After installation, start Mayo and run the onboarding wizard:</p>
+            <pre><code>mayo
+> /wizard</code></pre>
+            <p>The wizard guides you through:</p>
+            <ol>
+                <li>Selecting and configuring your <strong>AI Provider</strong> (API key, model).</li>
+                <li>Connecting your first <strong>data source</strong> (database or file).</li>
+                <li>Setting up <strong>privacy preferences</strong> (PII masking, interactive mode).</li>
+            </ol>
+
+            <!-- COMMANDS -->
+            <h2 id="commands">All Commands</h2>
+            <p>Mayo operates in an interactive shell. Use slash commands (<code>/command</code>) for administrative
+                tasks and natural language for data queries.</p>
+
+            <!-- AI & CONFIGURATION -->
+            <h3 id="ai-configuration">AI & Configuration</h3>
+            <p>Manage AI behavior, privacy settings, and persistent context.</p>
+            <div class="docs-table-wrap">
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Alias</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/mayo</code></td>
+                            <td>—</td>
+                            <td>Displays version, license, and current system health status.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/setup</code></td>
+                            <td><code>/s</code></td>
+                            <td>Launch the interactive configuration wizard for AI Providers (Gemini, OpenAI, Groq,
+                                Anthropic) and preferences.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/model</code></td>
+                            <td>—</td>
+                            <td>Change the active LLM model for the current session.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/profile</code></td>
+                            <td><code>ai</code>, <code>ds</code></td>
+                            <td>Switch between saved AI or Data Source profiles.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/context</code></td>
+                            <td><code>[text/file/clear]</code></td>
+                            <td>Set persistent business logic or domain knowledge.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/privacy</code></td>
+                            <td>—</td>
+                            <td>Toggle PII Masking (ON/OFF). Masks emails, phones, credentials before cloud transit.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>/debug</code></td>
+                            <td>—</td>
+                            <td>Toggle Debug Mode — see raw AI prompts and metadata.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/analyst</code></td>
+                            <td>—</td>
+                            <td>Toggle Analyst Insight — auto-analysis of query results.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/wizard</code></td>
+                            <td>—</td>
+                            <td>Starts the guided onboarding process for new users.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- CONNECTIVITY -->
+            <h3 id="connectivity">Connectivity & Data Sources</h3>
+            <p>Connect Mayo to your databases and files.</p>
+            <div class="docs-table-wrap">
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Alias</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/connect</code></td>
+                            <td><code>/c</code></td>
+                            <td>Connect to a new data source (Postgres, MySQL, SQLite, File).</td>
+                        </tr>
+                        <tr>
+                            <td><code>/sources</code></td>
+                            <td>—</td>
+                            <td>List all active connections and detailed connection strings.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/disconnect</code></td>
+                            <td><code>[alias]</code></td>
+                            <td>Close a connection to a specific data source.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/scan</code></td>
+                            <td>—</td>
+                            <td>Re-read schema and metadata from all connected sources.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/describe</code></td>
+                            <td><code>[alias]</code></td>
+                            <td>Generate a Pandas-style statistical summary of a table or dataframe.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/annotate</code></td>
+                            <td><code>[target] [desc]</code></td>
+                            <td>Add AI-readable descriptions (e.g., <code>/annotate users.id "Internal UUID"</code>).
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="docs-callout tip">
+                <strong>Example connection strings:</strong><br />
+                PostgreSQL: <code>/connect postgres postgres://user:pass@localhost:5432/mydb</code><br />
+                CSV File: <code>/connect file data/customers.csv</code><br />
+                Folder: <code>/connect file ./data-folder/</code>
+            </div>
+
+            <!-- DATAFRAMES -->
+            <h3 id="dataframes">Data Processing (Dataframes)</h3>
+            <p>Mayo uses "Dataframe Mode" to stage results in memory for complex analysis.</p>
+            <div class="docs-table-wrap">
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Subcommand</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/reconcile</code></td>
+                            <td><code>/compare</code></td>
+                            <td>AI-powered reconciliation between two data sources.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/df</code></td>
+                            <td><code>list</code></td>
+                            <td>List all saved dataframes.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/df</code></td>
+                            <td><code>load [name]</code></td>
+                            <td>Load a saved dataframe or knowledge doc into memory.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/df</code></td>
+                            <td><code>commit [name]</code></td>
+                            <td>Persist current result set into local SQLite storage.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/df</code></td>
+                            <td><code>status</code></td>
+                            <td>Check the current state of the working copy.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/df</code></td>
+                            <td><code>reset</code></td>
+                            <td>Clear memory and return to Pure Database Mode.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/df</code></td>
+                            <td><code>export [name]</code></td>
+                            <td>Export a result set (Markdown, CSV, JSON).</td>
+                        </tr>
+                        <tr>
+                            <td><code>/plot</code></td>
+                            <td><code>[chart type]</code></td>
+                            <td>Generate ASCII charts or trend data descriptions.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/enhance</code></td>
+                            <td><code>start</code></td>
+                            <td>Launch the AI Data Enhancer for the active dataframe.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- KNOWLEDGE BASE -->
+            <h3 id="knowledge-base">Knowledge Base (RAG)</h3>
+            <p>Build a semantic memory from external documents.</p>
+            <div class="docs-table-wrap">
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Arguments</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/knowledge</code></td>
+                            <td><code>[file]</code></td>
+                            <td>Index a PDF, Markdown, or Text file into the vector store.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/knowledge</code></td>
+                            <td><code>against [file]</code></td>
+                            <td>Compare a document against indexed knowledge (Gap analysis).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- SESSIONS -->
+            <h3 id="sessions">Sessions & Research</h3>
+            <p>Organize your research threads with persistent sessions.</p>
+            <div class="docs-table-wrap">
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Subcommand</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/sessions</code></td>
+                            <td><code>create</code></td>
+                            <td>Start a fresh research session.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/sessions</code></td>
+                            <td><code>list</code></td>
+                            <td>Switch between historical sessions.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/sessions</code></td>
+                            <td><code>rename</code></td>
+                            <td>Give a meaningful title to the current session.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/sessions</code></td>
+                            <td><code>delete</code></td>
+                            <td>Remove a session and its associated data/vault.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/export</code></td>
+                            <td><code>[file.md]</code></td>
+                            <td>Export session transcript to a file.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/share</code></td>
+                            <td><code>[file.md]</code></td>
+                            <td>Generate an AI-powered Executive Report.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/audit</code></td>
+                            <td>—</td>
+                            <td>View last 100 lines of the prompt audit log.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/history</code></td>
+                            <td><code>[session_id]</code></td>
+                            <td>View full transcript of a session.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/changelog</code></td>
+                            <td>—</td>
+                            <td>View feature updates and version history.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- API & SYSTEM -->
+            <h3 id="api-system">API & System</h3>
+            <div class="docs-table-wrap">
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Subcommand</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/serve</code></td>
+                            <td><code>spawn</code>, <code>stop</code>, <code>logs</code>, <code>status</code></td>
+                            <td>Manage Mayo's background API server.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/this</code></td>
+                            <td>—</td>
+                            <td>"God Mode" status: IDs, directories, active structures.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/clear</code></td>
+                            <td>—</td>
+                            <td>Clear the terminal screen.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/help</code></td>
+                            <td><code>[query]</code></td>
+                            <td>Open interactive manual or search commands.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/exit</code></td>
+                            <td><code>/q</code>, <code>/quit</code></td>
+                            <td>Terminate session and close connections.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- TERMINAL COMMANDS -->
+            <h3 id="terminal-commands">Terminal Commands (External)</h3>
+            <p>Commands run directly from your shell, not inside Mayo's interactive mode.</p>
+            <div class="docs-table-wrap">
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Usage</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>mayo serve</code></td>
+                            <td><code>mayo serve --port 8080</code></td>
+                            <td>Start a foreground REST API server with multi-session support.</td>
+                        </tr>
+                        <tr>
+                            <td><code>mayo release-notes</code></td>
+                            <td><code>mayo release-notes</code></td>
+                            <td>Generate an AI changelog from git commits.</td>
+                        </tr>
+                        <tr>
+                            <td><code>mayo scraper</code></td>
+                            <td><code>mayo scraper spawn [q]</code></td>
+                            <td>Start a Teleskop.id data scraper in background.</td>
+                        </tr>
+                        <tr>
+                            <td><code>mayo wizard</code></td>
+                            <td><code>mayo wizard</code></td>
+                            <td>Run the onboarding wizard.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- GUIDES -->
+            <h2 id="natural-language">Natural Language Queries</h2>
+            <p>Mayo's core feature is the ability to ask questions about your data in plain English. Here's how it
+                works:</p>
+            <ol>
+                <li><strong>Connect</strong> — Link a database or file with <code>/connect</code>.</li>
+                <li><strong>Ask</strong> — Type your question naturally. Mayo generates SQL based on your schema
+                    metadata.</li>
+                <li><strong>Review</strong> — With Interactive Mode enabled, review the generated SQL before execution.
+                </li>
+                <li><strong>Results</strong> — Data is fetched, displayed as a table, and optionally analyzed by the AI
+                    analyst.</li>
+            </ol>
+            <pre><code>mayo▸ What are the top 10 customers by total spend this quarter?
+
+ Generating SQL...
+SELECT customer_name, SUM(amount) as total_spend
+FROM orders
+WHERE order_date >= '2026-01-01'
+GROUP BY customer_name
+ORDER BY total_spend DESC
+LIMIT 10;
+
+✓ Run this query? [Y/n]: y
+✓ 10 rows returned in 0.34s</code></pre>
+
+            <div class="docs-callout warning">
+                Mayo only sends <strong>schema metadata</strong> (table/column names) to the AI. Your actual data
+                rows <strong>never leave your machine</strong>.
+            </div>
+
+            <!-- DATA ENRICHMENT -->
+            <h2 id="data-enrichment">Data Enrichment</h2>
+            <p>The AI Data Enhancer processes your datasets row-by-row using an AI model. Common use cases:</p>
+            <ul>
+                <li><strong>Sentiment Analysis</strong> — Classify customer feedback as positive/negative/neutral.</li>
+                <li><strong>Data Classification</strong> — Categorize products, transactions, or text entries.</li>
+                <li><strong>Data Cleaning</strong> — Standardize names, addresses, or fix formatting issues.</li>
+                <li><strong>Content Generation</strong> — Generate descriptions, titles, or summaries from raw data.
+                </li>
+            </ul>
+            <pre><code>/enhance start --prompt "Classify the sentiment of the 'feedback' column"</code></pre>
+            <p>The enhancer runs incrementally and can be stopped and resumed. Progress is saved in your local SQLite
+                database.</p>
+
+            <!-- RECONCILIATION -->
+            <h2 id="reconciliation">Data Reconciliation</h2>
+            <p>The <code>/reconcile</code> command compares data across two connected sources, identifying discrepancies
+                with AI assistance.</p>
+            <pre><code>/reconcile
+> Select source A: postgres (analytics_db)
+> Select source B: file (bank_statement.csv)
+> AI analyzing mapping patterns...</code></pre>
+            <p>Mayo presents a summary of findings, then lets you choose between automatic reconciliation or manual row
+                selection (git-commit style).</p>
+
+            <!-- KNOWLEDGE RAG -->
+            <h2 id="knowledge-rag">Knowledge Base (RAG)</h2>
+            <p>Build a semantic memory from your documents for contextual queries.</p>
+            <pre><code>/knowledge rfp_proposal.pdf
+✓ Indexed 247 chunks from rfp_proposal.pdf
+
+mayo▸ What are the compliance requirements mentioned in the RFP?</code></pre>
+            <p>You can also cross-reference knowledge documents against each other for gap analysis:</p>
+            <pre><code>/knowledge against compliance_checklist.md</code></pre>
+
+            <!-- API SERVER -->
+            <h2 id="api-server">API Server</h2>
+            <p>Expose Mayo as a REST API for integration with other applications.</p>
+            <pre><code>mayo serve --port 8080</code></pre>
+            <p>Endpoints available:</p>
+            <div class="docs-table-wrap">
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Endpoint</th>
+                            <th>Method</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/v1/:session_id/query</code></td>
+                            <td>POST</td>
+                            <td>Send a natural language query for a specific session.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/v1/status</code></td>
+                            <td>GET</td>
+                            <td>Health check and server status.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="docs-callout info">
+                Authentication with Bearer token is required. CORS is enabled for cross-origin access.
+            </div>
+
+            <!-- TRUST & SECURITY -->
+            <h2 id="security">Trust & Security</h2>
+            <p>Mayo is designed with a <strong>"Security First, Privacy Always"</strong> philosophy. Here are the key
+                security pillars:</p>
+
+            <h3 id="pii-masking">PII Masking</h3>
+            <p>Mayo's built-in PII Detection Engine (<code>internal/privacy</code>) automatically scans for sensitive
+                information before any cloud communication:</p>
+            <ul>
+                <li><strong>Emails</strong> → Replaced with <code>«EMAIL_1»</code></li>
+                <li><strong>Phone Numbers</strong> → Replaced with <code>«PHONE_1»</code></li>
+                <li><strong>Credit Cards</strong> → Replaced with <code>«CC_1»</code></li>
+            </ul>
+            <p>Tokens are mapped back to original values only on your local machine. Toggle with <code>/privacy</code>.
+            </p>
+
+            <h3 id="audit">Prompt Auditing</h3>
+            <p>Use <code>/audit</code> to see the exact JSON payload sent to the AI at any time. Audit logs are stored
+                at:</p>
+            <pre><code>~/.mayo-cli/sessions/[session_id]/audit.log</code></pre>
+
+            <h3>Secure Credentials</h3>
+            <p>API keys are stored in your OS Keychain (macOS Keychain / Windows Credential Manager) — never in plain
+                text.</p>
+
+            <h3>Network Verification</h3>
+            <p>Mayo only communicates with your database and your chosen AI provider. Verify using network tools like
+                Little Snitch or Wireshark.</p>
+
+            <!-- ARCHITECTURE -->
+            <h2 id="architecture">Architecture</h2>
+            <ul>
+                <li><strong>Core</strong> — Written in Go for high performance and easy distribution as a single binary.
+                </li>
+                <li><strong>Engine</strong> — Custom Orchestrator for LLM communication and safe SQL execution.</li>
+                <li><strong>UI</strong> — Powered by <code>lipgloss</code> and <code>charmbracelet</code> for a premium
+                    terminal experience.</li>
+                <li><strong>Storage</strong> — Local metadata and session state via SQLite and JSON files.</li>
+                <li><strong>Privacy</strong> — PII detection, secure keychain integration, and transparent auditing.
+                </li>
+            </ul>
+
+            <!-- CHANGELOG -->
+            <h2 id="changelog">Changelog</h2>
+            <p>View the latest feature updates directly in Mayo:</p>
+            <pre><code>/changelog</code></pre>
+            <p>Or generate AI-powered release notes from git commits:</p>
+            <pre><code>mayo release-notes</code></pre>
+
+            <div
+                style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-subtle); text-align: center;">
+                <p style="color: var(--text-muted); font-size: var(--text-sm);">
+                    &copy; 2026 <a href="https://teleskop.id" target="_blank" rel="noopener"
+                        style="color: var(--accent-2);">Teleskop.id</a>. All rights reserved.
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile sidebar toggle -->
+    <button class="docs-mobile-toggle" id="docsMobileToggle" aria-label="Toggle sidebar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

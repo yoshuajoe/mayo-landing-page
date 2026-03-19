@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mayo CLI — AI-Powered Data Analysis in Your Terminal</title>
+  <meta name="description"
+    content="Mayo CLI is your autonomous AI research & data analysis partner. Query databases with natural language, enrich data with AI, and keep everything private — all from your terminal." />
+  <meta property="og:title" content="Mayo CLI — AI-Powered Data Analysis in Your Terminal" />
+  <meta property="og:description"
+    content="Your autonomous AI research & data analysis partner. Query, analyze, and enrich datasets with natural language." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <span class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" y1="19" x2="20" y2="19"></line>
+          </svg>
+        </span>
+        <span class="logo-text">Mayo</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#trust" class="nav-link">Trust & Security</a>
+        <a href="docs.html" class="nav-link">Docs</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </div>
+      <div class="nav-spacer" style="flex: 1;"></div>
+      <a href="docs.html" class="nav-cta">
+        Get Started
+      </a>
+      <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div class="nav-mobile-menu" id="mobileMenu">
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#how-it-works" class="nav-link">How It Works</a>
+      <a href="#trust" class="nav-link">Trust & Security</a>
+      <a href="docs.html" class="nav-link">Docs</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Enterprise-ready Terminal AI
+      </div>
+      <h1 class="hero-title">
+        AI-powered data analysis<br />
+        <span class="hero-gradient-text">right in your terminal.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Query databases with natural language. Enrich data with AI. Keep your data private and local.
+        Mayo is your autonomous research & data analysis partner.
+      </p>
+
+      <!-- INSTALL COMMAND -->
+      <div class="install-section" id="install">
+        <div class="install-box">
+          <div class="install-dropdown">
+            <button class="install-dropdown-btn" id="installDropdownBtn">
+              <span id="installLabel">Install Mayo</span>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" fill="none" />
+              </svg>
+            </button>
+            <div class="install-dropdown-menu" id="installDropdownMenu">
+              <button class="install-option active" data-cmd="curl -fsSL https://mayo.teleskop.id/install.sh | bash"
+                data-label="macOS / Linux">macOS / Linux</button>
+              <button class="install-option" data-cmd="mayo /wizard" data-label="Quick Init">Quick Init</button>
+            </div>
+          </div>
+          <div class="install-command-wrap">
+            <code class="install-command"
+              id="installCommand">curl -fsSL https://mayo.teleskop.id/install.sh | bash</code>
+            <button class="install-copy-btn" id="installCopyBtn" aria-label="Copy install command">
+              <svg class="copy-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="check-icon hidden" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <a href="docs.html" class="install-docs-link">Or read the documentation</a>
+      </div>
+
+      <!-- TERMINAL PREVIEW -->
+      <div class="terminal-preview">
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="terminal-title">mayo — zsh</span>
+        </div>
+        <div class="terminal-body" id="terminalBody">
+          <div class="term-line">
+            <span class="term-prompt">$</span>
+            <span class="term-cmd" id="termCmd">mayo</span>
+            <span class="term-cursor" id="termCursor">▊</span>
+          </div>
+          <div class="term-output hidden" id="termOutput">
+            <pre class="ascii-art">
+       ((   ))
+      (  o o  )
+       )  v  (
+   ___/     \___
+  (     MAYO    )
+    \___________/
+      ||     ||
+      m       m</pre>
+            <div class="term-line"><span class="term-info">Mayo CLI v1.4.0</span></div>
+            <div class="term-line"><span class="term-success">✓ Connected to PostgreSQL (analytics_db)</span></div>
+            <div class="term-line"><span class="term-success">✓ PII Masking: ON</span></div>
+            <div class="term-line"><span class="term-success">✓ PII Masking: ON</span></div>
+            <div class="term-line term-spacer"></div>
+            <div class="term-line">
+              <span class="term-prompt">mayo▸</span>
+              <span class="term-user-input" id="termQuery"></span>
+              <span class="term-cursor" id="termCursor2">▊</span>
+            </div>
+            <div class="term-response hidden" id="termResponse">
+              <div class="term-line"><span class="term-muted">Generating SQL...</span></div>
+              <div class="term-line"><span class="term-sql">SELECT department, COUNT(*) as total, AVG(salary) as
+                  avg_salary</span></div>
+              <div class="term-line"><span class="term-sql">FROM employees GROUP BY department ORDER BY total DESC LIMIT
+                  10;</span></div>
+              <div class="term-line term-spacer"></div>
+              <div class="term-line"><span class="term-success">✓ 10 rows returned in 0.23s</span></div>
+              <table class="term-table">
+                <tr>
+                  <th>department</th>
+                  <th>total</th>
+                  <th>avg_salary</th>
+                </tr>
+                <tr>
+                  <td>Engineering</td>
+                  <td>245</td>
+                  <td>125,000</td>
+                </tr>
+                <tr>
+                  <td>Sales</td>
+                  <td>189</td>
+                  <td>95,000</td>
+                </tr>
+                <tr>
+                  <td>Marketing</td>
+                  <td>134</td>
+                  <td>88,000</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section class="features" id="features">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">Capabilities</span>
+        <h2 class="section-title">Everything you need to<br /><span class="gradient-text">master your data.</span></h2>
+        <p class="section-subtitle">From natural language queries to AI-powered data enrichment, Mayo gives you a
+          complete data toolkit — all in one terminal.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card feature-card-large">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div class="feature-content">
+            <h3>Natural Language Queries</h3>
+            <p>Ask questions about your data in plain English. Mayo's AI generates optimized SQL, executes it safely,
+              and presents results beautifully — no SQL knowledge required.</p>
+            <div class="feature-tag">CORE ENGINE</div>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+              <line x1="6" y1="1" x2="6" y2="4" />
+              <line x1="10" y1="1" x2="10" y2="4" />
+              <line x1="14" y1="1" x2="14" y2="4" />
+            </svg>
+          </div>
+          <h3>Universal Connectivity</h3>
+          <p>Connect to PostgreSQL, MySQL, SQLite, CSV files, and entire folders. Switch between data sources
+            effortlessly.</p>
+          <div class="feature-tag">MULTI-SOURCE</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+          </div>
+          <h3>AI Data Enhancer</h3>
+          <p>Batch-process datasets using AI for classification, sentiment analysis, data cleaning, and custom
+            enrichment tasks.</p>
+          <div class="feature-tag">AI-POWERED</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            </svg>
+          </div>
+          <h3>Knowledge Base (RAG)</h3>
+          <p>Index PDF, Markdown, and text documents into a semantic vector store. Cross-reference knowledge with your
+            SQL data.</p>
+          <div class="feature-tag">SEMANTIC SEARCH</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="16 3 21 3 21 8" />
+              <line x1="4" y1="20" x2="21" y2="3" />
+              <polyline points="21 16 21 21 16 21" />
+              <line x1="15" y1="15" x2="21" y2="21" />
+              <line x1="4" y1="4" x2="9" y2="9" />
+            </svg>
+          </div>
+          <h3>Smart Reconciliation</h3>
+          <p>AI-powered data reconciliation between different sources. Automatically identify mapping patterns and
+            discrepancies.</p>
+          <div class="feature-tag">AI MATCHING</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+              <line x1="6" y1="6" x2="6.01" y2="6" />
+              <line x1="6" y1="18" x2="6.01" y2="18" />
+            </svg>
+          </div>
+          <h3>REST API Server</h3>
+          <p>Expose Mayo as an API with <code>mayo serve</code>. Multi-session support, Bearer auth, CORS — ready for
+            integration.</p>
+          <div class="feature-tag">API</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
+            </svg>
+          </div>
+          <h3>Research Sessions</h3>
+          <p>Persistent sessions that save your queries, results, and history. Export polished reports with
+            one command.</p>
+          <div class="feature-tag">WORKFLOW</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">Workflow</span>
+        <h2 class="section-title">From question to insight<br /><span class="gradient-text">in seconds.</span></h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h3>Connect</h3>
+          <p>Link your databases, CSV files, or entire folders. Mayo auto-discovers schemas and metadata.</p>
+          <div class="step-code">
+            <code>/connect postgres postgres://user:pass@host/db</code>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h3>Ask</h3>
+          <p>Type your question in natural language. Mayo's AI understands context, generates SQL, and lets you review
+            before execution.</p>
+          <div class="step-code">
+            <code>"What are our top 10 customers by revenue this quarter?"</code>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h3>Analyze</h3>
+          <p>Get instant results with optional AI-powered analysis. Enrich, reconcile, and cross-reference across
+            sources.</p>
+          <div class="step-code">
+            <code>/enhance start --prompt "Classify sentiment"</code>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">04</div>
+          <h3>Share</h3>
+          <p>Export beautiful markdown reports, share via API, or save results for later research sessions.</p>
+          <div class="step-code">
+            <code>/share quarterly_analysis.md</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRUST & SECURITY ===== -->
+  <section class="trust" id="trust">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">Trust & Security</span>
+        <h2 class="section-title">Your data never leaves<br /><span class="gradient-text">your machine.</span></h2>
+        <p class="section-subtitle">Mayo is designed with a "Security First, Privacy Always" philosophy. Even as a
+          distributed binary, you have 100% control over your data.</p>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-card">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <h3>Zero-Rows Cloud</h3>
+          <p>Only database schema are sent to the AI. Every single row of your data stays local
+            — analysis and execution happen on your CPU.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+          </div>
+          <h3>Automatic PII Blindfolds</h3>
+          <p>Built-in PII detection scans for emails, phones, and credit cards before any cloud communication. Sensitive
+            data is masked.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </div>
+          <h3>Transparent Audit</h3>
+          <p>Use <code>/audit</code> to see the exact JSON payload sent to the AI at any time. Trust, but verify your
+            data traffic.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="9 11 12 14 22 4" />
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+            </svg>
+          </div>
+          <h3>Interactive Gatekeeper</h3>
+          <p>Review every SQL query before it runs. Edit on the fly, cancel, or approve — you're always in complete
+            control.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
+            </svg>
+          </div>
+          <h3>Secure Credential Vault</h3>
+          <p>API keys stored in your OS Keychain (macOS / Windows). Keys are encrypted and never stored in plain text
+            files.</p>
+        </div>
+        <div class="trust-card">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+          </div>
+          <h3>Network Verifiable</h3>
+          <p>Mayo only communicates with your database and chosen AI provider. Verify with standard network monitoring
+            tools.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SUPPORTED INTEGRATIONS ===== -->
+  <section class="integrations" id="integrations">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">Integrations</span>
+        <h2 class="section-title">Works where <span class="gradient-text">you work.</span></h2>
+      </div>
+      <div class="integrations-row">
+        <div class="integration-item">
+          <div class="integration-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <span>Databases</span>
+        </div>
+        <div class="integration-item">
+          <div class="integration-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <span>CSV / Files</span>
+        </div>
+        <div class="integration-item">
+          <div class="integration-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+              </path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <span>AI Models</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq" id="faq">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">FAQ</span>
+        <h2 class="section-title">Frequently asked<br /><span class="gradient-text">questions.</span></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" id="faq-1">
+            <span>How do I get started with Mayo?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Install Mayo via the install script, <code>go install</code>, or by building from source. Then run
+              <code>mayo</code> to start the interactive shell and use <code>/wizard</code> for guided setup — it walks
+              you through configuring your AI provider and connecting your first data source.
+            </p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" id="faq-2">
+            <span>What kinds of tasks can Mayo handle?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Mayo handles natural language database queries, data reconciliation, AI-powered data enrichment
+              (sentiment analysis, classification, cleaning), document indexing (RAG), cross-source JOINs (e.g.,
+              Postgres + CSV), and polished report generation.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" id="faq-3">
+            <span>Is my data safe with Mayo?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely. Mayo operates with a "Zero-Rows Cloud" policy — only schema metadata leaves your machine. PII
+              is automatically masked, credentials are stored in your OS keychain, and you can audit every payload sent
+              to the AI. Your actual data rows never leave your local environment.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" id="faq-4">
+            <span>Which AI providers does Mayo support?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Mayo supports OpenAI (GPT-4, etc.), Google Gemini, Anthropic Claude, and Groq. You can switch providers
+              and models at any time during a session using the <code>/model</code> command.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" id="faq-5">
+            <span>What databases can I connect to?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Mayo supports PostgreSQL, MySQL, SQLite databases, as well as CSV files and entire folders. You can
+              connect multiple sources simultaneously and even perform cross-source JOINs via the in-memory engine.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" id="faq-6">
+            <span>Can I use Mayo as an API?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! Run <code>mayo serve --port 8080</code> to start a secured REST API server with multi-session
+              support, Bearer token authentication, and CORS. Integrate Mayo's capabilities into any application.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" id="faq-7">
+            <span>What are the system requirements?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Mayo requires macOS, Linux, or Windows with SQLite3 installed and an API key for at least one supported
+              AI provider (OpenAI, Gemini, Anthropic, or Groq). If building from source, Go 1.21+ is required.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BOTTOM ===== -->
+  <section class="cta-bottom">
+    <div class="section-container">
+      <div class="cta-inner">
+        <h2>Talk to your data.<br /><span class="gradient-text">Not to SQL.</span></h2>
+        <p>Get started with Mayo in under 30 seconds.</p>
+        <div class="install-box cta-install-box">
+          <div class="install-command-wrap">
+            <code class="install-command">curl -fsSL https://mayo.teleskop.id/install.sh | bash</code>
+            <button class="install-copy-btn" id="ctaCopyBtn" aria-label="Copy install command">
+              <svg class="copy-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+              </svg>
+              <svg class="check-icon hidden" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="cta-links">
+          <a href="docs.html" class="cta-link">Read the docs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="section-container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 17 10 11 4 5"></polyline>
+              <line x1="12" y1="19" x2="20" y2="19"></line>
+            </svg>
+          </span>
+          <span class="logo-text">Mayo CLI</span>
+          <p class="footer-tagline">Your autonomous AI research & data analysis partner.</p>
+        </div>
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#trust">Trust & Security</a>
+            <a href="#faq">FAQ</a>
+          </div>
+          <div class="footer-col">
+            <h4>Resources</h4>
+            <a href="docs.html">Documentation</a>
+            <a href="docs.html#commands">Commands</a>
+            <a href="docs.html#getting-started">Getting Started</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 <a href="https://teleskop.id" target="_blank" rel="noopener">Teleskop.id</a>. All rights
+          reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
