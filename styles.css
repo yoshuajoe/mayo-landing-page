@@ -131,6 +131,12 @@ img {
   padding: 0 var(--space-xl);
 }
 
+@media (max-width: 768px) {
+  .section-container {
+    padding: 0 var(--space-md);
+  }
+}
+
 .section-header {
   text-align: center;
   margin-bottom: var(--space-4xl);
@@ -190,6 +196,12 @@ img {
   justify-content: space-between;
 }
 
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 var(--space-md);
+  }
+}
+
 .nav-logo {
   display: flex;
   align-items: center;
@@ -197,6 +209,13 @@ img {
   font-weight: 800;
   font-size: var(--text-2xl);
   margin-right: var(--space-2xl);
+}
+
+@media (max-width: 768px) {
+  .nav-logo {
+    margin-right: 0;
+    font-size: var(--text-xl);
+  }
 }
 
 .logo-icon {
@@ -328,6 +347,13 @@ img {
   align-items: center;
 }
 
+@media (max-width: 768px) {
+  .hero {
+    padding: 120px 0 60px;
+    min-height: auto;
+  }
+}
+
 .hero-pattern {
   position: absolute;
   top: 0;
@@ -402,7 +428,7 @@ img {
 }
 
 .hero-title {
-  font-size: var(--text-6xl);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
   font-weight: 900;
   line-height: 1.08;
   letter-spacing: -0.03em;
@@ -1292,23 +1318,30 @@ img {
   }
 
   .nav-mobile-menu {
-    background: rgba(10, 10, 15, 0.95);
+    background: rgba(10, 10, 15, 0.98);
     backdrop-filter: blur(20px);
+    padding: var(--space-2xl) var(--space-xl);
+  }
+
+  .nav-mobile-menu .nav-link {
+    font-size: var(--text-lg);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--border-subtle);
   }
 
   .hero {
-    padding: 100px 0 60px;
+    padding: 120px 0 60px;
     min-height: auto;
   }
 
   .hero-title {
-    font-size: var(--text-4xl);
     line-height: 1.1;
   }
 
   .hero-subtitle {
     font-size: var(--text-base);
-    padding: 0 var(--space-md);
+    padding: 0;
+    margin-bottom: var(--space-2xl);
   }
 
   .section-title {
@@ -1329,11 +1362,11 @@ img {
   }
 
   .install-command-wrap {
-    padding: var(--space-md) var(--space-sm) var(--space-md) var(--space-lg);
+    padding: var(--space-md) var(--space-lg);
   }
 
   .terminal-preview {
-    margin: 0 -10px;
+    margin: 0;
     border-radius: var(--radius-md);
   }
 
@@ -1411,7 +1444,7 @@ img {
 
 @media (max-width: 480px) {
   .hero-title {
-    font-size: var(--text-3xl);
+    font-size: clamp(1.75rem, 10vw, 2.5rem);
   }
 
   .hero-subtitle {
@@ -1419,7 +1452,11 @@ img {
   }
 
   .section-title {
-    font-size: var(--text-2xl);
+    font-size: 1.75rem;
+  }
+
+  .section-header {
+    margin-bottom: var(--space-2xl);
   }
 
   .integrations-row {
@@ -1432,13 +1469,17 @@ img {
   }
 
   .terminal-body {
-    font-size: 11px;
+    font-size: 10px;
     padding: var(--space-sm) var(--space-md);
   }
 
   .term-table th,
   .term-table td {
     padding: 2px 8px 2px 0;
+  }
+
+  .install-command {
+    font-size: 12px;
   }
 }
 
