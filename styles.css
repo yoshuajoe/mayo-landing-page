@@ -389,7 +389,14 @@ img {
   text-align: center;
   position: relative;
   z-index: 2;
+  width: 100%;
   /* Bring above pattern */
+}
+
+@media (max-width: 768px) {
+  .hero-container {
+    padding: 0 var(--space-md);
+  }
 }
 
 .hero-badge {
@@ -405,6 +412,8 @@ img {
   border-radius: var(--radius-full);
   margin-bottom: var(--space-2xl);
   animation: fadeInUp 0.6s ease;
+  max-width: 100%;
+  white-space: normal;
 }
 
 .badge-dot {
@@ -428,12 +437,16 @@ img {
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-size: clamp(2.25rem, 8vw, 4.5rem);
   font-weight: 900;
-  line-height: 1.08;
+  line-height: 1.1;
   letter-spacing: -0.03em;
   margin-bottom: var(--space-xl);
   animation: fadeInUp 0.6s ease 0.1s both;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
 }
 
 .hero-subtitle {
@@ -470,6 +483,7 @@ img {
   border: 1px solid var(--border-card);
   border-radius: var(--radius-lg);
   max-width: 680px;
+  width: 100%;
   margin: 0 auto;
   overflow: hidden;
   transition: border-color var(--transition-base), box-shadow var(--transition-base);
@@ -607,6 +621,7 @@ img {
 /* ===== TERMINAL PREVIEW ===== */
 .terminal-preview {
   max-width: 720px;
+  width: 100%;
   margin: 0 auto;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -1335,6 +1350,7 @@ img {
   }
 
   .hero-title {
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
     line-height: 1.1;
   }
 
@@ -1342,6 +1358,7 @@ img {
     font-size: var(--text-base);
     padding: 0;
     margin-bottom: var(--space-2xl);
+    max-width: 100%;
   }
 
   .section-title {
@@ -1362,7 +1379,11 @@ img {
   }
 
   .install-command-wrap {
-    padding: var(--space-md) var(--space-lg);
+    padding: var(--space-md);
+  }
+
+  .install-command {
+    font-size: 13px;
   }
 
   .terminal-preview {
@@ -1444,11 +1465,13 @@ img {
 
 @media (max-width: 480px) {
   .hero-title {
-    font-size: clamp(1.75rem, 10vw, 2.5rem);
+    font-size: clamp(1.2rem, 12vw, 1.85rem);
+    line-height: 1.1;
   }
 
   .hero-subtitle {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 
   .section-title {
