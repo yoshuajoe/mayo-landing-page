@@ -170,11 +170,16 @@ img {
   left: -28px;
   right: -28px;
   transform: translateY(-50%);
-  display: none;
-  /* Hide by default */
+  display: flex;
   justify-content: space-between;
   pointer-events: none;
   z-index: 20;
+}
+
+@media (max-width: 1024px) {
+  .slider-controls {
+    display: none;
+  }
 }
 
 .slider-btn {
@@ -986,9 +991,10 @@ img {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   padding: var(--space-xl) 0;
-  margin: -var(--space-xl) 0;
+  margin: 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  width: 100%;
 }
 
 .steps-grid::-webkit-scrollbar {
@@ -1002,6 +1008,8 @@ img {
   border: 1px solid var(--border-card);
   border-radius: var(--radius-lg);
   transition: all var(--transition-base);
+  flex-shrink: 0;
+  scroll-snap-align: start;
 }
 
 .step-card:hover {
