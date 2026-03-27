@@ -167,19 +167,13 @@ img {
 .slider-controls {
   position: absolute;
   top: 50%;
-  left: -28px;
-  right: -28px;
+  left: 0;
+  right: 0;
   transform: translateY(-50%);
   display: flex;
   justify-content: space-between;
   pointer-events: none;
   z-index: 20;
-}
-
-@media (max-width: 1024px) {
-  .slider-controls {
-    display: none;
-  }
 }
 
 .slider-btn {
@@ -981,20 +975,20 @@ img {
 .steps-slider-container {
   overflow: visible;
   position: relative;
+  padding: 0 52px;
 }
 
 .steps-grid {
   display: flex;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
   overflow-x: auto;
+  overflow-y: visible;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding: var(--space-xl) 0;
-  margin: 0;
+  padding: var(--space-lg) 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  width: 100%;
 }
 
 .steps-grid::-webkit-scrollbar {
@@ -1008,8 +1002,9 @@ img {
   border: 1px solid var(--border-card);
   border-radius: var(--radius-lg);
   transition: all var(--transition-base);
-  flex-shrink: 0;
+  flex: 0 0 calc(33.333% - var(--space-lg) * 2 / 3);
   scroll-snap-align: start;
+  min-width: 260px;
 }
 
 .step-card:hover {
@@ -1386,24 +1381,12 @@ img {
 
 /* ===== RESPONSIVE ===== */
 @media (min-width: 1201px) {
-  .slider-controls {
-    display: flex;
-  }
-
-  .steps-grid {
-    max-width: none;
-  }
 
   .features-grid,
   .trust-grid {
     max-width: 1000px;
     margin: 0 auto;
     gap: var(--space-2xl);
-  }
-
-  .step-card {
-    flex: 0 0 350px;
-    scroll-snap-align: start;
   }
 }
 
@@ -1420,13 +1403,12 @@ img {
     grid-column: span 2;
   }
 
-  .steps-grid {
-    grid-template-columns: none;
-    display: flex;
+  .step-card {
+    flex: 0 0 calc(50% - var(--space-lg) / 2);
   }
 
-  .step-card {
-    flex: 0 0 320px;
+  .slider-controls {
+    display: none;
   }
 
   .trust-grid {
@@ -1538,25 +1520,16 @@ img {
   }
 
   .steps-slider-container {
-    margin-left: -var(--space-md);
-    margin-right: -var(--space-md);
-  }
-
-  .steps-grid {
-    grid-template-columns: none;
-    display: flex;
-    padding-left: var(--space-md);
-    padding-right: var(--space-md);
+    margin-left: calc(-1 * var(--space-md));
+    margin-right: calc(-1 * var(--space-md));
+    padding: 0 var(--space-md);
   }
 
   .step-card {
-    flex: 0 0 85vw;
+    flex: 0 0 80vw;
+    max-width: 320px;
     padding: var(--space-lg);
     scroll-snap-align: center;
-  }
-
-  .step-card {
-    padding: var(--space-md);
     overflow: hidden;
     min-width: 0;
   }

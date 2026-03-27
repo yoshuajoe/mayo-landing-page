@@ -114,37 +114,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const stepsNext = document.getElementById('stepsNext');
 
     if (stepsGrid && stepsPrev && stepsNext) {
+        function getScrollStep() {
+            const card = stepsGrid.querySelector('.step-card');
+            if (!card) return 300;
+            const style = getComputedStyle(stepsGrid);
+            const gap = parseFloat(style.gap) || 16;
+            return card.offsetWidth + gap;
+        }
+
+        function updateSliderButtons() {
+            const scrollLeft = Math.round(stepsGrid.scrollLeft);
+            const maxScroll = stepsGrid.scrollWidth - stepsGrid.clientWidth;
+
+            const atStart = scrollLeft <= 2;
+            const atEnd = scrollLeft >= maxScroll - 2;
+
+            stepsPrev.style.opacity = atStart ? '0' : '1';
+            stepsPrev.style.pointerEvents = atStart ? 'none' : 'auto';
+            stepsPrev.style.transition = 'opacity 0.2s ease';
+
+            stepsNext.style.opacity = atEnd ? '0' : '1';
+            stepsNext.style.pointerEvents = atEnd ? 'none' : 'auto';
+            stepsNext.style.transition = 'opacity 0.2s ease';
+        }
+
         stepsNext.addEventListener('click', () => {
-            const firstCard = stepsGrid.querySelector('.step-card');
-            if (firstCard) {
-                const cardWidth = firstCard.offsetWidth + 24; // approximate width + gap
-                stepsGrid.scrollBy({ left: cardWidth, behavior: 'smooth' });
-            }
+            stepsGrid.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
         });
 
         stepsPrev.addEventListener('click', () => {
-            const firstCard = stepsGrid.querySelector('.step-card');
-            if (firstCard) {
-                const cardWidth = firstCard.offsetWidth + 24; // approximate width + gap
-                stepsGrid.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-            }
+            stepsGrid.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
         });
 
-        // Toggle buttons visibility based on scroll position
-        stepsGrid.addEventListener('scroll', () => {
-            const scrollLeft = stepsGrid.scrollLeft;
-            const maxScroll = stepsGrid.scrollWidth - stepsGrid.clientWidth;
-
-            stepsPrev.style.opacity = scrollLeft <= 0 ? '0.3' : '1';
-            stepsPrev.style.pointerEvents = scrollLeft <= 0 ? 'none' : 'auto';
-
-            stepsNext.style.opacity = scrollLeft >= maxScroll - 5 ? '0.3' : '1';
-            stepsNext.style.pointerEvents = scrollLeft >= maxScroll - 5 ? 'none' : 'auto';
-        });
+        stepsGrid.addEventListener('scroll', updateSliderButtons);
+        window.addEventListener('resize', updateSliderButtons);
 
         // Initial state
-        stepsPrev.style.opacity = '0.3';
-        stepsPrev.style.pointerEvents = 'none';
+        updateSliderButtons();
     }
 
     // ============================
