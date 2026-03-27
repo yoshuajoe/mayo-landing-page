@@ -70,6 +70,7 @@
                 <a href="#connectivity">Connectivity</a>
                 <a href="#dataframes">Data Processing</a>
                 <a href="#knowledge-base">Knowledge Base</a>
+                <a href="#scraping">Web Scraping</a>
                 <a href="#sessions">Sessions</a>
                 <a href="#api-system">API & System</a>
                 <a href="#terminal-commands">Terminal Commands</a>
@@ -160,15 +161,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>/mayo</code></td>
-                            <td>—</td>
-                            <td>Displays version, license, and current system health status.</td>
-                        </tr>
-                        <tr>
                             <td><code>/setup</code></td>
                             <td><code>/s</code></td>
-                            <td>Launch the interactive configuration wizard for AI Providers (Gemini, OpenAI, Groq,
-                                Anthropic) and preferences.</td>
+                            <td>Launch the interactive configuration wizard for AI Providers (Gemini, OpenAI, Groq, Anthropic) and general preferences.</td>
                         </tr>
                         <tr>
                             <td><code>/model</code></td>
@@ -178,28 +173,27 @@
                         <tr>
                             <td><code>/profile</code></td>
                             <td><code>ai</code>, <code>ds</code></td>
-                            <td>Switch between saved AI or Data Source profiles.</td>
+                            <td>Manually switch between saved AI or Data Source profiles.</td>
                         </tr>
                         <tr>
                             <td><code>/context</code></td>
                             <td><code>[text/file/clear]</code></td>
-                            <td>Set persistent business logic or domain knowledge.</td>
+                            <td>Set persistent business logic or domain knowledge that Mayo should always remember.</td>
                         </tr>
                         <tr>
                             <td><code>/privacy</code></td>
                             <td>—</td>
-                            <td>Toggle PII Masking (ON/OFF). Masks emails, phones, credentials before cloud transit.
-                            </td>
+                            <td>Toggle PII Masking (ON/OFF). Masks emails, phones, and credentials before cloud transit.</td>
                         </tr>
                         <tr>
                             <td><code>/debug</code></td>
                             <td>—</td>
-                            <td>Toggle Debug Mode — see raw AI prompts and metadata.</td>
+                            <td>Toggle Debug Mode to see raw AI prompts and metadata.</td>
                         </tr>
                         <tr>
                             <td><code>/analyst</code></td>
                             <td>—</td>
-                            <td>Toggle Analyst Insight — auto-analysis of query results.</td>
+                            <td>Toggle "Analyst Insight" which automatically analyzes query results after they are fetched.</td>
                         </tr>
                         <tr>
                             <td><code>/wizard</code></td>
@@ -224,14 +218,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>/connect</code></td>
-                            <td><code>/c</code></td>
-                            <td>Connect to a new data source (Postgres, MySQL, SQLite, File).</td>
-                        </tr>
-                        <tr>
                             <td><code>/sources</code></td>
                             <td>—</td>
-                            <td>List all active connections and detailed connection strings.</td>
+                            <td>List all active connections and their detailed connection strings.</td>
                         </tr>
                         <tr>
                             <td><code>/disconnect</code></td>
@@ -251,8 +240,7 @@
                         <tr>
                             <td><code>/annotate</code></td>
                             <td><code>[target] [desc]</code></td>
-                            <td>Add AI-readable descriptions (e.g., <code>/annotate users.id "Internal UUID"</code>).
-                            </td>
+                            <td>Add AI-readable descriptions to improve context (e.g., `/annotate users.id "Internal UUID"`).</td>
                         </tr>
                     </tbody>
                 </table>
@@ -279,24 +267,19 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>/reconcile</code></td>
-                            <td><code>/compare</code></td>
-                            <td>AI-powered reconciliation between two data sources.</td>
-                        </tr>
-                        <tr>
                             <td><code>/df</code></td>
                             <td><code>list</code></td>
-                            <td>List all saved dataframes.</td>
+                            <td>List all saved dataframes in local storage.</td>
                         </tr>
                         <tr>
                             <td><code>/df</code></td>
                             <td><code>load [name]</code></td>
-                            <td>Load a saved dataframe or knowledge doc into memory.</td>
+                            <td>Load a saved dataframe or knowledge document into current memory.</td>
                         </tr>
                         <tr>
                             <td><code>/df</code></td>
                             <td><code>commit [name]</code></td>
-                            <td>Persist current result set into local SQLite storage.</td>
+                            <td>Persist current result set/memory into local SQLite storage.</td>
                         </tr>
                         <tr>
                             <td><code>/df</code></td>
@@ -306,22 +289,22 @@
                         <tr>
                             <td><code>/df</code></td>
                             <td><code>reset</code></td>
-                            <td>Clear memory and return to Pure Database Mode.</td>
+                            <td>Clear memory and return to "Pure Database Mode".</td>
                         </tr>
                         <tr>
                             <td><code>/df</code></td>
                             <td><code>export [name]</code></td>
-                            <td>Export a result set (Markdown, CSV, JSON).</td>
+                            <td>Export a result set directly to a file (Markdown, CSV, JSON).</td>
                         </tr>
                         <tr>
                             <td><code>/plot</code></td>
                             <td><code>[chart type]</code></td>
-                            <td>Generate ASCII charts or trend data descriptions.</td>
+                            <td>Generate ASCII charts or descriptions of trend data.</td>
                         </tr>
                         <tr>
                             <td><code>/enhance</code></td>
                             <td><code>start</code></td>
-                            <td>Launch the AI Data Enhancer for the active dataframe.</td>
+                            <td>Launch the AI Data Enhancer worker for the active dataframe.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -342,13 +325,65 @@
                     <tbody>
                         <tr>
                             <td><code>/knowledge</code></td>
-                            <td><code>[file]</code></td>
-                            <td>Index a PDF, Markdown, or Text file into the vector store.</td>
+                            <td><code>against [file]</code></td>
+                            <td>Compare a document against existing indexed knowledge (Compliance/Gap analysis).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- WEB SCRAPING -->
+            <h3 id="scraping">Web Scraping & External Sources</h3>
+            <p>Automated data collection from the web using the Teleskop.id scraper.</p>
+            <div class="docs-table-wrap">
+                <table class="docs-table">
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Subcommands</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>/sessions</code></td>
+                            <td><code>list</code></td>
+                            <td>Switch between historical research sessions.</td>
                         </tr>
                         <tr>
-                            <td><code>/knowledge</code></td>
-                            <td><code>against [file]</code></td>
-                            <td>Compare a document against indexed knowledge (Gap analysis).</td>
+                            <td><code>/sessions</code></td>
+                            <td><code>rename</code></td>
+                            <td>Give a meaningful title to the current session.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/sessions</code></td>
+                            <td><code>delete</code></td>
+                            <td>Remove a specific session and its associated data/vault.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/export</code></td>
+                            <td><code>[file.md]</code></td>
+                            <td>Export the raw session log (transcript) to a file.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/share</code></td>
+                            <td><code>[file.md]</code></td>
+                            <td>Synthesize current session results into an AI-generated Executive Report.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/audit</code></td>
+                            <td>—</td>
+                            <td>View the last 100 lines of the prompt audit log for transparency.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/history</code></td>
+                            <td><code>[session_id]</code></td>
+                            <td>View the full transcript of a specific session.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/changelog</code></td>
+                            <td>—</td>
+                            <td>View the latest feature updates and version history.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -368,49 +403,29 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>/sessions</code></td>
-                            <td><code>create</code></td>
-                            <td>Start a fresh research session.</td>
-                        </tr>
-                        <tr>
-                            <td><code>/sessions</code></td>
-                            <td><code>list</code></td>
-                            <td>Switch between historical sessions.</td>
-                        </tr>
-                        <tr>
-                            <td><code>/sessions</code></td>
-                            <td><code>rename</code></td>
-                            <td>Give a meaningful title to the current session.</td>
-                        </tr>
-                        <tr>
-                            <td><code>/sessions</code></td>
-                            <td><code>delete</code></td>
-                            <td>Remove a session and its associated data/vault.</td>
-                        </tr>
-                        <tr>
-                            <td><code>/export</code></td>
-                            <td><code>[file.md]</code></td>
-                            <td>Export session transcript to a file.</td>
-                        </tr>
-                        <tr>
-                            <td><code>/share</code></td>
-                            <td><code>[file.md]</code></td>
-                            <td>Generate an AI-powered Executive Report.</td>
-                        </tr>
-                        <tr>
-                            <td><code>/audit</code></td>
+                            <td><code>/this</code></td>
                             <td>—</td>
-                            <td>View last 100 lines of the prompt audit log.</td>
+                            <td>"God Mode" status: IDs, directories, and active structures.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/clear</code></td>
+                            <td>—</td>
+                            <td>Clear the terminal screen.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/help</code></td>
+                            <td><code>[query]</code></td>
+                            <td>Open the interactive manual or search for specific commands.</td>
+                        </tr>
+                        <tr>
+                            <td><code>/exit</code></td>
+                            <td><code>/q</code>, <code>/quit</code></td>
+                            <td>Safely terminate the CLI session and close connections.</td>
                         </tr>
                         <tr>
                             <td><code>/history</code></td>
                             <td><code>[session_id]</code></td>
-                            <td>View full transcript of a session.</td>
-                        </tr>
-                        <tr>
-                            <td><code>/changelog</code></td>
-                            <td>—</td>
-                            <td>View feature updates and version history.</td>
+                            <td>View chat logs for the current or specified session.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -429,29 +444,19 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>/serve</code></td>
-                            <td><code>spawn</code>, <code>stop</code>, <code>logs</code>, <code>status</code></td>
-                            <td>Manage Mayo's background API server.</td>
+                            <td><code>mayo release-notes</code></td>
+                            <td><code>mayo release-notes</code></td>
+                            <td>Generate an AI changelog from git commits.</td>
                         </tr>
                         <tr>
-                            <td><code>/this</code></td>
-                            <td>—</td>
-                            <td>"God Mode" status: IDs, directories, active structures.</td>
+                            <td><code>mayo scraper</code></td>
+                            <td><code>mayo scraper spawn [q]</code></td>
+                            <td>Start a background Teleskop.id data scraper.</td>
                         </tr>
                         <tr>
-                            <td><code>/clear</code></td>
-                            <td>—</td>
-                            <td>Clear the terminal screen.</td>
-                        </tr>
-                        <tr>
-                            <td><code>/help</code></td>
-                            <td><code>[query]</code></td>
-                            <td>Open interactive manual or search commands.</td>
-                        </tr>
-                        <tr>
-                            <td><code>/exit</code></td>
-                            <td><code>/q</code>, <code>/quit</code></td>
-                            <td>Terminate session and close connections.</td>
+                            <td><code>mayo wizard</code></td>
+                            <td><code>mayo wizard</code></td>
+                            <td>Run the onboarding wizard (alias for `/setup`).</td>
                         </tr>
                     </tbody>
                 </table>
@@ -644,7 +649,7 @@ mayo▸ What are the compliance requirements mentioned in the RFP?</code></pre>
             <div
                 style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-subtle); text-align: center;">
                 <p style="color: var(--text-muted); font-size: var(--text-sm);">
-                    &copy; 2026 <a href="https://teleskop.id" target="_blank" rel="noopener"
+                    &copy; 2026 copy; 2026 copy; 2026 <a href="https://teleskop.id" target="_blank" rel="noopener"
                         style="color: var(--accent-2);">Teleskop.id</a>. All rights reserved.
                 </p>
             </div>

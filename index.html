@@ -72,8 +72,8 @@
         <span class="hero-gradient-text">right in your terminal.</span>
       </h1>
       <p class="hero-subtitle">
-        Query databases with natural language. Enrich data with AI. Keep your data private and local.
-        Mayo is your autonomous research & data analysis partner.
+        Query databases with natural language. Collect web data automatically. Enrich findings with AI.
+        Mayo is your private and local autonomous research partner.
       </p>
 
       <!-- INSTALL COMMAND -->
@@ -211,6 +211,20 @@
             <div class="feature-tag">CORE ENGINE</div>
           </div>
         </div>
+        <div class="feature-card highlight-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+          </div>
+          <h3>Automated Web Scraping</h3>
+          <p>Collect real-time intelligence from social media, news, and SEO data using our integrated Teleskop scraper
+            engine.</p>
+          <div class="feature-tag">DATA ACQUISITION</div>
+        </div>
         <div class="feature-card">
           <div class="feature-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -306,39 +320,55 @@
         <span class="section-tag">Workflow</span>
         <h2 class="section-title">From question to insight<br /><span class="gradient-text">in seconds.</span></h2>
       </div>
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-number">01</div>
-          <h3>Connect</h3>
-          <p>Link your databases, CSV files, or entire folders. Mayo auto-discovers schemas and metadata.</p>
-          <div class="step-code">
-            <code>/connect postgres postgres://user:pass@host/db</code>
-          </div>
+      <div class="steps-slider-container">
+        <div class="slider-controls">
+          <button class="slider-btn prev" id="stepsPrev" aria-label="Previous step">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button class="slider-btn next" id="stepsNext" aria-label="Next step">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
         </div>
-        <div class="step-card">
-          <div class="step-number">02</div>
-          <h3>Ask</h3>
-          <p>Type your question in natural language. Mayo's AI understands context, generates SQL, and lets you review
-            before execution.</p>
-          <div class="step-code">
-            <code>"What are our top 10 customers by revenue this quarter?"</code>
+        <div class="steps-grid" id="stepsGrid">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <h3>Connect</h3>
+            <p>Link your databases, CSV files, or entire folders. Mayo auto-discovers schemas and metadata.</p>
+            <div class="step-code">
+              <code>/connect postgres postgres://user:pass@host/db</code>
+            </div>
           </div>
-        </div>
-        <div class="step-card">
-          <div class="step-number">03</div>
-          <h3>Analyze</h3>
-          <p>Get instant results with optional AI-powered analysis. Enrich, reconcile, and cross-reference across
-            sources.</p>
-          <div class="step-code">
-            <code>/enhance start --prompt "Classify sentiment"</code>
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <h3>Ask</h3>
+            <p>Type your question in natural language. Mayo's AI understands context, generates SQL, and lets you review
+              before execution.</p>
+            <div class="step-code">
+              <code>"What are our top 10 customers by revenue this quarter?"</code>
+            </div>
           </div>
-        </div>
-        <div class="step-card">
-          <div class="step-number">04</div>
-          <h3>Share</h3>
-          <p>Export beautiful markdown reports, share via API, or save results for later research sessions.</p>
-          <div class="step-code">
-            <code>/share quarterly_analysis.md</code>
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <h3>Analyze</h3>
+            <p>Get instant results with optional AI-powered analysis. Enrich, reconcile, and cross-reference across
+              sources.</p>
+            <div class="step-code">
+              <code>/enhance start --prompt "Classify sentiment"</code>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">04</div>
+            <h3>Share</h3>
+            <p>Export beautiful markdown reports, share via API, or save results for later research sessions.</p>
+            <div class="step-code">
+              <code>/share quarterly_analysis.md</code>
+            </div>
           </div>
         </div>
       </div>
@@ -462,6 +492,17 @@
             </svg>
           </div>
           <span>CSV / Files</span>
+        </div>
+        <div class="integration-item">
+          <div class="integration-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+          </div>
+          <span>Teleskop.id</span>
         </div>
         <div class="integration-item">
           <div class="integration-icon">
@@ -648,7 +689,8 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 <a href="https://teleskop.id" target="_blank" rel="noopener">Teleskop.id</a>. All rights
+        <p>&copy; 2026 copy; 2026 copy; 2026 <a href="https://teleskop.id" target="_blank"
+            rel="noopener">Teleskop.id</a>. All rights
           reserved.</p>
       </div>
     </div>

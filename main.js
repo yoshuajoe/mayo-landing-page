@@ -107,6 +107,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ============================
+    // Workflow Slider
+    // ============================
+    const stepsGrid = document.getElementById('stepsGrid');
+    const stepsPrev = document.getElementById('stepsPrev');
+    const stepsNext = document.getElementById('stepsNext');
+
+    if (stepsGrid && stepsPrev && stepsNext) {
+        stepsNext.addEventListener('click', () => {
+            const firstCard = stepsGrid.querySelector('.step-card');
+            if (firstCard) {
+                const cardWidth = firstCard.offsetWidth + 24; // approximate width + gap
+                stepsGrid.scrollBy({ left: cardWidth, behavior: 'smooth' });
+            }
+        });
+
+        stepsPrev.addEventListener('click', () => {
+            const firstCard = stepsGrid.querySelector('.step-card');
+            if (firstCard) {
+                const cardWidth = firstCard.offsetWidth + 24; // approximate width + gap
+                stepsGrid.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+            }
+        });
+
+        // Toggle buttons visibility based on scroll position
+        stepsGrid.addEventListener('scroll', () => {
+            const scrollLeft = stepsGrid.scrollLeft;
+            const maxScroll = stepsGrid.scrollWidth - stepsGrid.clientWidth;
+
+            stepsPrev.style.opacity = scrollLeft <= 0 ? '0.3' : '1';
+            stepsPrev.style.pointerEvents = scrollLeft <= 0 ? 'none' : 'auto';
+
+            stepsNext.style.opacity = scrollLeft >= maxScroll - 5 ? '0.3' : '1';
+            stepsNext.style.pointerEvents = scrollLeft >= maxScroll - 5 ? 'none' : 'auto';
+        });
+
+        // Initial state
+        stepsPrev.style.opacity = '0.3';
+        stepsPrev.style.pointerEvents = 'none';
+    }
+
+    // ============================
     // Terminal Animation
     // ============================
     const termOutput = document.getElementById('termOutput');
